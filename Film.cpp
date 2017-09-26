@@ -33,6 +33,7 @@ void Film::printChInfo()
 
 Film::~Film()
 {
+
 }
 
 int Film::getElemNum() const
