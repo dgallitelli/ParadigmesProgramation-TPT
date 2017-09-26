@@ -1,2 +1,4 @@
 *.o
 myProject.*
+depend-myprog
+files/*
