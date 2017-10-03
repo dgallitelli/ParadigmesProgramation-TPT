@@ -1,0 +1,10 @@
+Film.cpp
+Film.h
+MultimediaObject.cpp
+MultimediaObject.h
+PhotoObject.cpp
+PhotoObject.h
+VideoObject.cpp
+VideoObject.h
+depend-myprog
+main.cpp
