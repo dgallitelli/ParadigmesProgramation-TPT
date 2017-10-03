@@ -1,10 +1,11 @@
 Film.cpp
 Film.h
+Group.cpp
+Group.h
 MultimediaObject.cpp
 MultimediaObject.h
 PhotoObject.cpp
 PhotoObject.h
 VideoObject.cpp
 VideoObject.h
-depend-myprog
 main.cpp

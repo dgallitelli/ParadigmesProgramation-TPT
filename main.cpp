@@ -52,9 +52,9 @@ int main(){
     /* SECTION 4 - Testing Film Object */
     int elemNum = 2;
     int chListDur[] = {10, 20};
-    string chListName[] = {"OnlyOne", "nope"};
+    //string chListName[] = {"OnlyOne", "nope"};
 
-    Film *myFilm = new Film(elemNum, chListDur, chListName, objectName, fileName3, 10);
+    Film *myFilm = new Film(elemNum, chListDur, objectName, fileName3, 10);
     myFilm->printChInfo();
     delete myFilm;
     myFilm = nullptr;

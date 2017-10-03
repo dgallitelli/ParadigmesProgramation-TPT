@@ -14,7 +14,7 @@ PROG = myprog
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = main.cpp MultimediaObject.cpp PhotoObject.cpp VideoObject.cpp Film.cpp
+SOURCES = main.cpp MultimediaObject.cpp PhotoObject.cpp VideoObject.cpp Film.cpp Group.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
