@@ -1,6 +1,7 @@
 #include "Group.h"
 
 Group::Group(string _groupName){
+    list<MultimediaObject*>();
     groupName = new string(_groupName);
 }
 

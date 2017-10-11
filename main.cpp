@@ -1,9 +1,31 @@
+#include <iostream>
+#include <memory>
+
 #include "MultimediaObject.h"
 #include "PhotoObject.h"
 #include "VideoObject.h"
 #include "Film.h"
+#include "Group.h"
 
 int main(){
+
+    /* SECTION 0 - Define datatypes for smart pointer */
+    // Smart Pointer for MultimediaObject
+    using MObjPtr = std::shared_ptr<MultimediaObject>;
+    typedef std::shared_ptr<MultimediaObject> MObjPtr;
+    // Smart Pointer for Photo
+    using PhotoPtr = std::shared_ptr<PhotoObject>;
+    typedef std::shared_ptr<PhotoObject> PhotoPtr;
+    // Smart Pointer for Video
+    using VideoPtr = std::shared_ptr<VideoObject>;
+    typedef std::shared_ptr<VideoObject> VideoPtr;
+    // Smart Pointer for Photo
+    using PhotoPtr = std::shared_ptr<PhotoObject>;
+    typedef std::shared_ptr<PhotoObject> PhotoPtr;
+    // Smart Pointer for Group
+    using GroupPtr = std::shared_ptr<Group>;
+    typedef std::shared_ptr<Group> GroupPtr;
+
 
     /* SECTION 1 - Testing Multimedia Object */
 
@@ -58,6 +80,11 @@ int main(){
     myFilm->printChInfo();
     delete myFilm;
     myFilm = nullptr;
+
+    /* SECTION 5 - Testing Groups */
+    Group *myG1 = new Group("TestGroup1");
+    delete myG1;
+    myG1 = nullptr;
 
     return 0;
 }
