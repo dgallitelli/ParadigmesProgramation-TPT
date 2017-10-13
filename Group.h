@@ -2,6 +2,7 @@
 #define GROUP_H
 
 #include <list>
+#include <memory>
 #include "MultimediaObject.h"
 
 class Group : public std::list<shared_ptr<MultimediaObject>>
@@ -11,7 +12,7 @@ public:
     Group(string _groupName);
     string *getGroupName() const;
     void setGroupName(string *value);
-    void reproduce();
+    void print();
     ~Group();
 };
 

@@ -19,9 +19,9 @@ void Group::setGroupName(string *value)
     groupName = value;
 }
 
-void Group::reproduce()
+void Group::print()
 {
     std::cout << "#### PRINTING CONTENT OF GROUP " << groupName << "####" << endl;
-    for (std::list<MultimediaObject*>::iterator i = this->begin(); i != this->end(); ++i)
-        (*i)->reproduce();
+    for (std::list<shared_ptr<MultimediaObject>>::const_iterator i = this->begin(); i != this->end(); ++i)
+        (*i)->print(std::cout);
 }

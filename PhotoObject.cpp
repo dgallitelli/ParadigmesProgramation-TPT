@@ -22,6 +22,6 @@ void PhotoObject::setLongitude(float value)
 
 void PhotoObject::reproduce()
 {
-    string command = "mpv "+getFileName()+" &";
+    string command = "mpv "+getPath()+" &";
     system(command.c_str());
 }

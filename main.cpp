@@ -76,7 +76,7 @@ int main(){
     int chListDur[] = {10, 20};
     //string chListName[] = {"OnlyOne", "nope"};
 
-    Film *myFilm = new Film(elemNum, chListDur, objectName, fileName3, 10);
+    Film *myFilm = new Film(objectName, fileName3, 10, elemNum, chListDur);
     myFilm->printChInfo();
     delete myFilm;
     myFilm = nullptr;
@@ -86,13 +86,13 @@ int main(){
 
     PhotoPtr p1(new PhotoObject("myNewPhoto", "photo1.png", 0, 0));
     VideoPtr v1(new VideoObject("myNewVideo", "video1.avi", 10));
-    FilmPtr f1(new Film(elemNum, chListDur, objectName, fileName3, 10));
+    FilmPtr f1(new Film(objectName, fileName3, 10, elemNum, chListDur));
 
     myG1->push_back(p1);
     myG1->push_back(v1);
     myG1->push_back(f1);
 
-    myG1->reproduce();
+    myG1->print();
 
     delete myG1;
     myG1 = nullptr;

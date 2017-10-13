@@ -12,6 +12,6 @@ void VideoObject::setDuration(int value)
 
 void VideoObject::reproduce()
 {
-    string command = "mpv "+getFileName()+" &";
+    string command = "mpv "+getPath()+" &";
     system(command.c_str());
 }

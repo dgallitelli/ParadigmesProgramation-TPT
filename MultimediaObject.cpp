@@ -1,32 +1,32 @@
 #include "MultimediaObject.h"
 
-string MultimediaObject::getObjectName() const
+string MultimediaObject::getName() const
 {
-    return objectName;
+    return name;
 }
 
-void MultimediaObject::setObjectName(const string &_objectName)
+void MultimediaObject::setName(const string &_objectName)
 {
-    objectName = _objectName;
+    name = _objectName;
 }
 
-string MultimediaObject::getFileName() const
+string MultimediaObject::getPath() const
 {
-    return fileName;
+    return path;
 }
 
-void MultimediaObject::setFileName(const string &_fileName)
+void MultimediaObject::setPath(const string &_fileName)
 {
-    fileName = _fileName;
+    path = _fileName;
 }
 
-void MultimediaObject::writeOnStream(ostream &outStream)
+void MultimediaObject::print(ostream &outStream)
 {
     if (outStream.rdbuf() == cout.rdbuf()){
         // output on stdout
-        cout << "Objectname: " << objectName << " | Filename: "  << fileName << endl;
+        cout << "Objectname: " << name << " | Filename: "  << path << endl;
     } else {
         // output on a different output stream
-        outStream << "Objectname: " << objectName << " | Filename: "  << fileName;
+        outStream << "Objectname: " << name << " | Filename: "  << path;
     }
 }

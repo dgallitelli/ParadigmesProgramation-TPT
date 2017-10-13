@@ -9,19 +9,19 @@ using namespace std;
 class MultimediaObject
 {
 private:
-    string objectName;
-    string fileName;
+    string name;
+    string path;
 public:
     MultimediaObject() {}
-    MultimediaObject(string _objectName, string _fileName) : objectName(_objectName), fileName(_fileName){}
+    MultimediaObject(string _name, string _path) : name(_name), path(_path){}
     virtual ~MultimediaObject() {}
 
-    virtual string getObjectName() const;
-    virtual void setObjectName(const string &value);
-    virtual string getFileName() const;
-    virtual void setFileName(const string &value);
+    virtual string getName() const;
+    virtual void setName(const string &value);
+    virtual string getPath() const;
+    virtual void setPath(const string &value);
 
-    virtual void writeOnStream(ostream& outStream);
+    virtual void print(ostream& outStream);
     virtual void reproduce() = 0;
 };
 

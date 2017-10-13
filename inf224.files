@@ -9,3 +9,5 @@ PhotoObject.h
 VideoObject.cpp
 VideoObject.h
 main.cpp
+Database.h
+Database.cpp

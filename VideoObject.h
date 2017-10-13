@@ -9,7 +9,8 @@ private:
     int duration = 0;
 public:
     VideoObject() {}
-    VideoObject(string _objectName, string _fileName, int _duration) : MultimediaObject(_objectName, _fileName), duration(_duration){}
+    VideoObject(string _name, string _path) : MultimediaObject(_name, _path){}
+    VideoObject(string _name, string _path, int _duration) : MultimediaObject(_name, _path), duration(_duration){}
     ~VideoObject() {}
 
     int getDuration() const;

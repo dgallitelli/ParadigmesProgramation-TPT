@@ -10,7 +10,8 @@ private:
     float longitude = 0;
 public:
     PhotoObject() {}
-    PhotoObject(string _objectName, string _fileName, float lat, float longit) : MultimediaObject(_objectName, _fileName), latitude(lat), longitude(longit) {}
+    PhotoObject(string _name, string _pathname) : MultimediaObject(_name, _pathname){}
+    PhotoObject(string _name, string _path, float lat, float longit) : MultimediaObject(_name, _path), latitude(lat), longitude(longit) {}
     ~PhotoObject() {}
 
     float getLatitude() const;

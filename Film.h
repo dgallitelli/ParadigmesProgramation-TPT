@@ -7,18 +7,19 @@
 class Film : public VideoObject
 {
 private:
-    int elemNum = 0;
-    int *chListDur;
+    int nChs = 0;
+    int *chList;
 public:
-    Film(int _elemNum, int *_chListDur, string _objectName, string _fileName, int _duration);
+    Film(string _name, string _path) : VideoObject(_name, _path){}
+    Film(string _name, string _path, int _duration, int _nChs, int *_chList);
     ~Film();
 
-    int getElemNum() const;
-    void setElemNum(int value);
-    int *getChListDur() const;
-    void setChListDur(int *value);
-
     void printChInfo();
+
+    int getNChs() const;
+    void setNChs(int value);
+    int *getChList() const;
+    void setChList(int *value);
 };
 
 #endif // FILM_H
