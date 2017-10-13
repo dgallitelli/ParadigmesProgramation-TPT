@@ -4,7 +4,7 @@
 #include <list>
 #include "MultimediaObject.h"
 
-class Group : std::list<MultimediaObject*>
+class Group : public std::list<shared_ptr<MultimediaObject>>
 {
     string* groupName;
 public:

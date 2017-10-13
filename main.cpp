@@ -22,9 +22,9 @@ int main(){
     // Smart Pointer for Photo
     using PhotoPtr = std::shared_ptr<PhotoObject>;
     typedef std::shared_ptr<PhotoObject> PhotoPtr;
-    // Smart Pointer for Group
-    using GroupPtr = std::shared_ptr<Group>;
-    typedef std::shared_ptr<Group> GroupPtr;
+    // Smart Pointer for Film
+    using FilmPtr = std::shared_ptr<Film>;
+    typedef std::shared_ptr<Film> FilmPtr;
 
 
     /* SECTION 1 - Testing Multimedia Object */
@@ -83,6 +83,17 @@ int main(){
 
     /* SECTION 5 - Testing Groups */
     Group *myG1 = new Group("TestGroup1");
+
+    PhotoPtr p1(new PhotoObject("myNewPhoto", "photo1.png", 0, 0));
+    VideoPtr v1(new VideoObject("myNewVideo", "video1.avi", 10));
+    FilmPtr f1(new Film(elemNum, chListDur, objectName, fileName3, 10));
+
+    myG1->push_back(p1);
+    myG1->push_back(v1);
+    myG1->push_back(f1);
+
+    myG1->reproduce();
+
     delete myG1;
     myG1 = nullptr;
 
