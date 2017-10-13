@@ -2,4 +2,4 @@
 myProject.*
 ./depend-myprog
 files/*
-./myprog
+myprog
