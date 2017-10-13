@@ -4,6 +4,12 @@ Database::Database()
 {
 }
 
+Database::~Database()
+{
+    mObjMap.clear();
+    groupMap.clear();
+}
+
 shared_ptr<PhotoObject> Database::newPhoto(string _name, string _path, float _lat, float _longit)
 {
     shared_ptr<PhotoObject> p(new PhotoObject(_name, _path, _lat, _longit));

@@ -6,6 +6,7 @@
 #include "VideoObject.h"
 #include "Film.h"
 #include "Group.h"
+#include "Database.h"
 
 int main(){
 
@@ -25,6 +26,9 @@ int main(){
     // Smart Pointer for Film
     using FilmPtr = std::shared_ptr<Film>;
     typedef std::shared_ptr<Film> FilmPtr;
+    // Smart Pointer for Group
+    using GroupPtr = std::shared_ptr<Group>;
+    typedef std::shared_ptr<Group> GroupPtr;
 
 
     /* SECTION 1 - Testing Multimedia Object */
@@ -96,6 +100,24 @@ int main(){
 
     delete myG1;
     myG1 = nullptr;
+
+    /* SECTION 6 - Testing Database */
+    Database *db = new Database();
+    PhotoPtr pdb = db->newPhoto("photo1", "./photo1.png", 0, 0);
+    VideoPtr vdb = db->newVideo("video1", "./video1.avi", 10);
+    FilmPtr fdb = db->newFilm("film1", "./movie1.avi", 10, elemNum, chListDur);
+    GroupPtr gdb = db->newGroup("gdbName");
+    gdb->push_back(pdb);
+    gdb->push_back(vdb);
+    gdb->push_back(fdb);
+
+    // Print methods for the database
+    db->printGroupFromName("gdbName");
+    db->printObjectFromName("photo1");
+    db->reproduceFromName("film1");
+
+    delete db;
+    db = nullptr;
 
     return 0;
 }
