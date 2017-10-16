@@ -6,16 +6,16 @@
 
 class Film : public VideoObject
 {
+    friend class Database;
 private:
     int nChs = 0;
     int *chList;
-public:
     Film(string _name, string _path) : VideoObject(_name, _path){}
     Film(string _name, string _path, int _duration, int _nChs, int *_chList);
-    ~Film();
 
+public:
     void printChInfo();
-
+    ~Film();
     int getNChs() const;
     void setNChs(int value);
     int *getChList() const;

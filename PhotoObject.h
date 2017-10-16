@@ -5,15 +5,16 @@
 
 class PhotoObject : public MultimediaObject
 {
+    friend class Database;
 private:
     float latitude = 0;
     float longitude = 0;
-public:
     PhotoObject() {}
     PhotoObject(string _name, string _pathname) : MultimediaObject(_name, _pathname){}
     PhotoObject(string _name, string _path, float lat, float longit) : MultimediaObject(_name, _path), latitude(lat), longitude(longit) {}
-    ~PhotoObject() {}
 
+public:
+    ~PhotoObject() {}
     float getLatitude() const;
     void setLatitude(float value);
     float getLongitude() const;

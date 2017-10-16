@@ -10,6 +10,12 @@ Database::~Database()
     groupMap.clear();
 }
 
+Database::Database(const Database &_db)
+{
+    mObjMap = _db.mObjMap;
+    groupMap = _db.groupMap;
+}
+
 shared_ptr<PhotoObject> Database::newPhoto(string _name, string _path, float _lat, float _longit)
 {
     shared_ptr<PhotoObject> p(new PhotoObject(_name, _path, _lat, _longit));
@@ -48,13 +54,13 @@ void Database::reproduceFromName(string name)
     }
 }
 
-void Database::printObjectFromName(string name)
+void Database::printObjectFromName(string name, ostream& outStream)
 {
     auto it=mObjMap.find(name);
     if (it == mObjMap.end()){
         cout << "No multimedia object found with that name." << endl;
     } else {
-        (it->second)->print(std::cout);
+        (it->second)->print(outStream);
     }
 }
 

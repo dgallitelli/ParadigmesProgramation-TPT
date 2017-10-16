@@ -7,9 +7,11 @@
 
 class Group : public std::list<shared_ptr<MultimediaObject>>
 {
+    friend class Database;
+private:
     string* groupName;
-public:
     Group(string _groupName);
+public:
     string *getGroupName() const;
     void setGroupName(string *value);
     void print();

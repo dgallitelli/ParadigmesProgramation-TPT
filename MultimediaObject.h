@@ -8,12 +8,14 @@ using namespace std;
 
 class MultimediaObject
 {
+    friend class Database;
 private:
     string name;
     string path;
-public:
+protected:
     MultimediaObject() {}
     MultimediaObject(string _name, string _path) : name(_name), path(_path){}
+public:
     virtual ~MultimediaObject() {}
 
     virtual string getName() const;
