@@ -11,3 +11,11 @@ VideoObject.h
 main.cpp
 Database.h
 Database.cpp
+client.cpp
+cppsocket.cpp
+cppsocket.h
+server.cpp
+tcpserver.cpp
+tcpserver.h
+Makefile
+Makefile-cliserv

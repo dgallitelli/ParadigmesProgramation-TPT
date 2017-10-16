@@ -9,6 +9,9 @@
 #include <iostream>
 #include <sstream>
 #include "tcpserver.h"
+#include "MultimediaObject.h"
+#include "PhotoObject.h"
+
 using namespace std;
 using namespace cppu;
 
@@ -38,7 +41,10 @@ public:
 
     // 1) pour decouper la requête:
     // on peut par exemple utiliser stringstream et getline()
-    
+    stringstream myss;
+    PhotoObject *myObj1 = new PhotoObject("test", "./test.png");
+    // MultimediaObject *myObj1 = new MultimediaObject("test", "./test.png");
+    myObj1->print(myss);
     
     // 2) faire le traitement:
     // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
@@ -51,8 +57,12 @@ public:
     //   des objets ou des groupes en lui passant en argument un stringstream
     // - attention, la requête NE DOIT PAS contenir les caractères \n ou \r car
     //   ils servent à délimiter les messages entre le serveur et le client
-    
-    response = "OK: " + request;
+    if (request == "test"){
+        response = myss.str();
+        myObj1->reproduce();
+    }
+    else
+        response = "OK: " + request;
     cerr << "response: " << response << endl;
     
     // renvoyer false si on veut clore la connexion avec le client

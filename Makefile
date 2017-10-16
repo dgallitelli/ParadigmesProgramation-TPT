@@ -14,7 +14,7 @@ PROG = myprog
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = main.cpp MultimediaObject.cpp PhotoObject.cpp VideoObject.cpp Film.cpp Group.cpp Database.cpp
+SOURCES = main.cpp MultimediaObject.cpp PhotoObject.cpp VideoObject.cpp Film.cpp Group.cpp Database.cpp client.cpp server.cpp cppsocket.cpp tcperver.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
@@ -43,7 +43,7 @@ LDFLAGS =
 # Librairies a utiliser
 # Exemple: LDLIBS = -L/usr/local/qt/lib -lqt
 #
-LDLIBS = 
+LDLIBS = -lpthread
 
 
 ##########################################

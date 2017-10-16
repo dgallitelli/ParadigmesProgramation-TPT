@@ -1,3 +1,5 @@
+#ifdef TRUC
+
 #include <iostream>
 #include <memory>
 
@@ -121,3 +123,5 @@ int main(){
 
     return 0;
 }
+
+#endif

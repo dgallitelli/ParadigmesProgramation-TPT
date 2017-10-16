@@ -1,0 +1,4 @@
+client.o: client.cpp cppsocket.h
+cppsocket.o: cppsocket.cpp cppsocket.h
+MultimediaObject.o: MultimediaObject.cpp MultimediaObject.h
+PhotoObject.o: PhotoObject.cpp PhotoObject.h MultimediaObject.h
