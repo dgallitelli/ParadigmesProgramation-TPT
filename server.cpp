@@ -56,23 +56,31 @@ public:
         vector<string> tokens;
         for (string each; getline(split, each, split_char); tokens.push_back(each));
 
-        // 2) faire le traitement:
-        // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
-        // - sinon juste: TCPLock lock(cnx);
-        TCPLock lock(cnx);
-
-        myDB->printObjectFromName(tokens[1], myss);
-        if (myss.rdbuf()->in_avail() == 0){
-            // The file is not in the db
-            response = "ERR - File not found";
+        if (tokens.size() <= 1 || tokens[0] != "play" || tokens[0] != "info" || tokens[0] != "quit"){
+            response = "ERR - Unsupported command. Try again.";
         } else {
-            fileFound = true;
-            response = myss.str();
-        }
 
-        if (tokens[0] == "play" && fileFound){
-            myDB->reproduceFromName(tokens[1]);
-            response = "OK - File is beADDITIONAL_CPPing reproduced.";
+            if (tokens[0] == "quit")
+                return false;
+
+            // 2) faire le traitement:
+            // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
+            // - sinon juste: TCPLock lock(cnx);
+            TCPLock lock(cnx);
+
+            myDB->printObjectFromName(tokens[1], myss);
+            if (myss.rdbuf()->in_avail() == 0){
+                // The file is not in the db
+                response = "ERR - File not found";
+            } else {
+                fileFound = true;
+                response = myss.str();
+            }
+
+            if (tokens[0] == "play" && fileFound){
+                myDB->reproduceFromName(tokens[1]);
+                response = "OK - File is being reproduced.";
+            }
         }
 
         // 3) retourner la reponse au client:
