@@ -72,7 +72,7 @@ public:
 
         if (tokens[0] == "play" && fileFound){
             myDB->reproduceFromName(tokens[1]);
-            response = "OK - File is being reproduced.";
+            response = "OK - File is beADDITIONAL_CPPing reproduced.";
         }
 
         // 3) retourner la reponse au client:
@@ -91,7 +91,6 @@ public:
 
 int main(int argc, char* argv[])
 {
-
     /* SECTION 0 - Define datatypes for smart pointer */
     // Smart Pointer for Photo
     using PhotoPtr = std::shared_ptr<PhotoObject>;
@@ -108,7 +107,6 @@ int main(int argc, char* argv[])
     // Smart Pointer for Group
     using GroupPtr = std::shared_ptr<Group>;
     typedef std::shared_ptr<Group> GroupPtr;
-
 
     int elemNum = 2;
     int chListDur[] = {10, 20};

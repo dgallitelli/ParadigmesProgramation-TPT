@@ -9,12 +9,13 @@
 #
 # Nom du programme
 #
-PROG = myprog
+PROG = myserv
 
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = main.cpp MultimediaObject.cpp PhotoObject.cpp VideoObject.cpp Film.cpp Group.cpp Database.cpp client.cpp server.cpp cppsocket.cpp tcperver.cpp
+ADDITIONAL_CPP = MultimediaObject.cpp PhotoObject.cpp VideoObject.cpp Film.cpp Group.cpp Database.cpp
+SOURCES = server.cpp cppsocket.cpp tcpserver.cpp ${ADDITIONAL_CPP}
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
@@ -32,7 +33,7 @@ CXX = c++
 #   -std=c++11 pour C++11
 # Exemple: CXXFLAGS= -std=c++11 -Wall -O -I/usr/local/qt/include
 #
-CXXFLAGS = -std=c++11 -Wall -g
+CXXFLAGS = -std=c++11 -Wall -g -fPIC
 
 #
 # Options de l'editeur de liens
