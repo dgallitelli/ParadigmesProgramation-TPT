@@ -13,8 +13,8 @@ class PhotoObject : public MultimediaObject
 {
     friend class Database;
 private:
-    float longitude = 0;    /**< latitude of the photo */
     float latitude = 0;     /**< longitude of the photo */
+    float longitude = 0;    /**< latitude of the photo */
     /**
      * @brief PhotoObject constructor
      */
