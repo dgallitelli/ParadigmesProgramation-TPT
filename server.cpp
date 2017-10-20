@@ -56,16 +56,20 @@ public:
         vector<string> tokens;
         for (string each; getline(split, each, split_char); tokens.push_back(each));
 
-        if (tokens.size() <= 1 || tokens[0] != "play" || tokens[0] != "info" || tokens[0] != "quit"){
-            response = "ERR - Unsupported command. Try again.";
-        } else {
+        // Drop connection if QUIT command has been received
+        if (tokens[0] == "quit")
+            return false;
 
-            if (tokens[0] == "quit")
-                return false;
+        // 2) faire le traitement:
+        // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
+        // - sinon juste: TCPLock lock(cnx);
 
-            // 2) faire le traitement:
-            // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
-            // - sinon juste: TCPLock lock(cnx);
+        // Check if less than two tokens
+        if (tokens.size() < 2){
+            response = "ERR - You have to specify a command [play/info] and a file, or the quit command.";
+        }
+        // Check if one of the supported commands
+        else if (tokens[0] == "play" || tokens[0] == "info"){
             TCPLock lock(cnx);
 
             myDB->printObjectFromName(tokens[1], myss);
@@ -81,6 +85,10 @@ public:
                 myDB->reproduceFromName(tokens[1]);
                 response = "OK - File is being reproduced.";
             }
+        }
+        // Return unsupported command error
+        else {
+            response = "ERR - Unsupported command [" + tokens[0] + "]. Try again.";
         }
 
         // 3) retourner la reponse au client:

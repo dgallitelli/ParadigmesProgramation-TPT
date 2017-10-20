@@ -1,6 +1,9 @@
 *.o
 myProject.*
-./depend-myprog
+depend-*
 files/*
 myprog
+myserv
 inf224.creator.*
+client
+server
