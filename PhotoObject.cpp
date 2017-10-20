@@ -35,10 +35,10 @@ void PhotoObject::setLongitude(float value)
 
 /**
  * @brief PhotoObject::reproduce
- * Reproduce the photo viq the mpv command
+ * Reproduce the photo via the imagej command
  */
 void PhotoObject::reproduce()
 {
-    string command = "mpv "+getPath()+" &";
+    string command = "imagej "+getPath()+" &";
     system(command.c_str());
 }
