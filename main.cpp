@@ -38,10 +38,12 @@ int main(){
     std::string objectName ("Testing");
     std::string fileName ("world");
 
-    /*MultimediaObject *mo = new MultimediaObject(objectName, fileName);
+#ifdef MO_NOT_ABSTRACT
+    MultimediaObject *mo = new MultimediaObject(objectName, fileName);
     mo->writeOnStream(std::cout);
     delete mo;
-    mo = nullptr;*/
+    mo = nullptr;
+#endif
 
     /* SECTION 2 - Testing Photo Object */
 
@@ -70,11 +72,13 @@ int main(){
         new PhotoObject(moObjNameArray[3], moFileNameArray[3], 0, 0)
     };
 
-    //for (int i = 0; i < valueNum; i++)
-        //moArray[i]->reproduce();
+#ifdef TEST_ARRAY_REPRODUCE
+    for (int i = 0; i < valueNum; i++)
+        moArray[i]->reproduce();
 
     for (int i = 0; i < valueNum; i++)
         delete moArray[i];
+#endif
 
 
     /* SECTION 4 - Testing Film Object */
