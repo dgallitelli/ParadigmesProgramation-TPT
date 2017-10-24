@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ClientMain extends JFrame{
+
+    private static final long serialVersionUID = 1L;
+
     JTextArea myTextBox;
     JButton b1, b2, b3;
     JPanel jp;
