@@ -24,25 +24,29 @@ public class ClientMain extends JFrame{
 
         // Initialization
         jp = new JPanel();
+        add(jp, BorderLayout.SOUTH);
+        myTextBox = new JTextArea("Hello World!\n", 3, 25);
+        jsp = new JScrollPane(myTextBox);
+        add(jsp);
         b1 = new JButton("Button1");
         b2 = new JButton("Button2");
         b3 = new JButton("Button3");
-        myTextBox = new JTextArea("Hello World!\n", 3, 25);
-        jsp = new JScrollPane(myTextBox);
-        // MenuBar
+        jp.add(b1); jp.add(b2); jp.add(b3);
+        // JMenuBar
         jmb = new JMenuBar();
+        setJMenuBar(jmb);
+        // JMenu
         jmActions = new JMenu("Actions");
-        jmiB1 = new JMenuItem(new AbstractButton1("B1"));
-        jmiB2 = new JMenuItem(new AbstractButton2("B2"));
-        jmiB3 = new JMenuItem(new AbstractButton3("Exit"));
+        jmActions.add(new JMenuItem(new AbstractButton1("B1")));
+        jmActions.add(new JMenuItem(new AbstractButton2("B2")));
+        jmActions.add(new JMenuItem(new AbstractButton3("Exit")));
+        jmb.add(jmActions);
         // ToolBar
         jtb = new JToolBar();
-
-        // Add components to the JFrame
-        setJMenuBar(jmb); add(jtb);
-        add(jp, BorderLayout.SOUTH); add(jsp);
-        jp.add(b1); jp.add(b2); jp.add(b3);
-        jmb.add(jmActions); jmActions.add(jmiB1); jmActions.add(jmiB2); jmActions.add(jmiB3);
+        jtb.add(new JButton(new AbstractButton1("B1")));
+        jtb.add(new JButton(new AbstractButton2("B2")));
+        jtb.add(new JButton(new AbstractButton3("Exit")));
+        jmb.add(jtb);
 
         // Setup listeners
         /*
