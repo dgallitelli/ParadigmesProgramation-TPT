@@ -9,6 +9,7 @@ public class ClientMain extends JFrame{
     JTextArea myTextBox;
     JButton b1, b2, b3;
     JPanel jp;
+    JScrollPane jsp;
 
     public static void main(String argv[]){
 
@@ -22,10 +23,11 @@ public class ClientMain extends JFrame{
         b2 = new JButton("Button2");
         b3 = new JButton("Button3");
         myTextBox = new JTextArea("Hello World!\n", 3, 25);
+        jsp = new JScrollPane(myTextBox);
 
         // add components to the controlPane
-        add(jp, BorderLayout.SOUTH);
-        add(myTextBox); jp.add(b1); jp.add(b2); jp.add(b3);
+        add(jp, BorderLayout.SOUTH); add(jsp);
+        jp.add(b1); jp.add(b2); jp.add(b3);
 
         // Setup listeners
         b1.addActionListener(new ActionListener(){
