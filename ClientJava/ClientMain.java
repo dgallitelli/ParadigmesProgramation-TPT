@@ -2,10 +2,12 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class ClientMain extends JFrame{
+    JTextArea myTextBox;
+    JButton b1, b2, b3;
 
     public static void main(String argv[]){
-        JTextArea myTextBox;
-        JButton b1, b2, b3;
+
+        new ClientMain();
     }
 
     public ClientMain(){
@@ -19,24 +21,24 @@ public class ClientMain extends JFrame{
         add(myTextBox); add(b1); add(b2); add(b3);
 
         // Setup listeners
-        b1.addActionListener(new Button1Click(){
+        b1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 myTextBox.append("Hello from Button 1!");
             }
-        })
-        b2.addActionListener(new Button2Click(){
+        });
+        b2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 myTextBox.append("Hello from Button 2!");
             }
-        })
-        b3.addActionListener(new Button3Click(){
+        });
+        b3.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 System.exit(0);
             }
-        })
+        });
 
         // Run the code
-        setDefaultCloseOperation(JFrame.CLOSE_ON_EXIT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Top-Box Client");
         pack();
         setVisible(true);
