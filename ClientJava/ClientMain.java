@@ -1,9 +1,11 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class ClientMain extends JFrame{
     JTextArea myTextBox;
     JButton b1, b2, b3;
+    JPanel jp;
 
     public static void main(String argv[]){
 
@@ -12,23 +14,25 @@ public class ClientMain extends JFrame{
 
     public ClientMain(){
         // Initialization
+        jp = new JPanel();
         b1 = new JButton("Button1");
         b2 = new JButton("Button2");
         b3 = new JButton("Button3");
-        myTextBox = new JTextArea("Hello World!", 3, 25);
+        myTextBox = new JTextArea("Hello World!\n", 3, 25);
 
         // add components to the controlPane
-        add(myTextBox); add(b1); add(b2); add(b3);
+        add(jp, BorderLayout.SOUTH);
+        add(myTextBox); jp.add(b1); jp.add(b2); jp.add(b3);
 
         // Setup listeners
         b1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                myTextBox.append("Hello from Button 1!");
+                myTextBox.append("Hello from Button 1!\n");
             }
         });
         b2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                myTextBox.append("Hello from Button 2!");
+                myTextBox.append("Hello from Button 2!\n");
             }
         });
         b3.addActionListener(new ActionListener(){
