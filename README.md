@@ -90,3 +90,57 @@ Sont des fonctions anonymes qui capturent les variables specifiées, et peuvent 
 - [var] - capture la variable var par copie
 - [&var] - capture la variable var par reference
 - [this] - si la lambda est dans un method, capture l'instance du objet appellant
+
+#### Q10 from Exam Nov17
+
+```cpp
+class Adresse{
+private:
+	string nom;
+	string prenom;
+	string numero;
+	string adresse;
+public:
+	Adresse();
+	Adresse(string nom, string prenom, string numero, string addresse) :
+			nom(nom), prenom(prenom), numero(numero), addresse(addresse) {}
+	string getNom() const {return nom;}
+	string getPrenom() const {return prenom;}
+	string getNumero() const {return numero;}
+	string getAdresse() const {return adresse;}
+	void setNom(const string& _nom){nom=_nom;}
+	void setNom(const string& _prenom){prenom=_prenom;}
+	void setNom(const string& _numero){numero=_numero;}
+	void setNom(const string& _addresse){addresse=_addresse;}
+}
+
+```
+```cpp
+class Carnet{
+private:
+	list<Adresse> carnet;
+public:
+	Carnet(){}
+	Carnet(list<Adresse> _carnet){
+		if !_carnet.empty()
+			for (auto it:_carnet)
+				carnet.push_back(*it);
+	}
+	void ajoutAdresse(Adresse *newAddr){
+		carnet.push_back(*newAddr);
+	}
+	Adresse rechAdresse(string nom){
+		for (auto it:carnet){
+			if (it->getNom()==nom)
+				return it;
+		}
+		return nullptr;
+	}
+	void supAdresse(string nom){
+		for (auto it:carnet){
+			if (it->getNom()==nom)
+				it->erase();
+		}
+	}
+}
+```
