@@ -75,6 +75,18 @@ y = swap(x, x=y)
 
 #### Quels sont les cas d'utilisation du mot-clé *const* en C++? En prenant un exemple, (par exemple le TP) expliquez pourquoi il est important de préciser ce qui est constant. Quelles sont les alternatives, par exemple en Java?
 
+Le mot-clé *const* est utilisé pour returner des valeurs qui ne doivent pas etre modifiés - sont ideal pour le **passage par valeur** (copie). Il specifie ce que la fonction a le droit de faire, pour eviter les erreurs. Dans le TP, on a utilisé le mot-clé *const* avec le getteurs, parce que les valeurs returnés ne doivent pas etre modifiés (pour respecter l'encapsulation). Les objet *const* permit de partager sans risque les données, sans les dupliquer.
 
+En **Java**, il n'y a pas *const*:
+- il y a *final*, equivalent de *const*
+- on utilise les **types immuables** (String pour example) majoritairement, mais on peut utiliser des types muables (StringBuffer) selon besoins.
 
-#### Qu'est-ce qui caractérise les fonctions lambda? Pourquoi permettentelles de simplifier le code?
+#### Qu'est-ce qui caractérise les fonctions lambda? Pourquoi permettent elles de simplifier le code?
+
+Sont des fonctions anonymes qui capturent les variables specifiées, et peuvent etre definits comme arguments des autres fonctions, donc elles permettent de simplifier beaucoup le code. On peut specifier:
+- [] - capture rien
+- [=] - capture tous les variables par copie
+- [&] - capture tous les variables par reference
+- [var] - capture la variable var par copie
+- [&var] - capture la variable var par reference
+- [this] - si la lambda est dans un method, capture l'instance du objet appellant
