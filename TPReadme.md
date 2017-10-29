@@ -61,3 +61,8 @@ En Java, il n'y a pas probleme de destructeur grace a le *garbage collector*: on
 #### Les méthodes précédentes permettent d'assurer la cohérence de la base de données car quand on crée un objet on l'ajoute à la table adéquate. Par contre, ce ne sera pas le cas si on crée un objet directement avec new (il n'appartiendra à aucune table). Comment peut-on l'interdire, afin que seule la classe servant à manipuler les objets puisse en créer de nouveaux?
 
 Pour interdire ce possibilité, il faut rendre **private** le constructeur de les objets *Photo*, *Video*, *Film* et *Group*, et rendre **friend** de ces classes la classe de la base de données. Dans cette maniere, on peut créer un nouveau objet seulement via les methodes de la base de données.
+
+### ETAPE 11
+#### Votre méthode *processRequest()* devra pouvoir accéder aux données de la classe créée à la question précédente. Sachant que cette méthode peut appartenir à n'importe quelle classe, quelle est la solution la plus simple ?
+
+La solution la plus simple est de avoir une reference dans la class *MyBase* a la base de données pour permeter de le envoyer et revoier les informations necessaires. Le constructeur de *MyBase* initialise ce reference avec le constructeur pour copie de l'objet de la base de données.
