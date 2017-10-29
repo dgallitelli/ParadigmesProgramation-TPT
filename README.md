@@ -93,7 +93,7 @@ Sont des fonctions anonymes qui capturent les variables specifiées, et peuvent 
 
 #### Q10 from Exam Nov17
 
-```cpp
+```
 class Adresse{
 private:
 	string nom;
@@ -115,7 +115,8 @@ public:
 }
 
 ```
-```cpp
+
+```
 class Carnet{
 private:
 	list<Adresse> carnet;
