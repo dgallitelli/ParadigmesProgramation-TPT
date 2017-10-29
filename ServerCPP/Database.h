@@ -11,13 +11,20 @@
 #include "VideoObject.h"
 #include "PhotoObject.h"
 
+/**
+ * @brief The Database class
+ * Class for handling objects for the application.
+ * It's the only one which can create new objects, so it has to be instanciated first,
+ * and then create objects by using the methods here defined.
+ * File information are stored in two maps.
+ */
 class Database
 {
 private:
-    map<string, shared_ptr<MultimediaObject>> mObjMap;
-    map<string, shared_ptr<Group>> groupMap;
+    map<string, shared_ptr<MultimediaObject>> mObjMap;  /**< The multimedia object map - store here the files */
+    map<string, shared_ptr<Group>> groupMap;            /**< The group map - add here groups already created  */
 public:
-    Database();
+    Database(){}
     ~Database();
     Database(const Database&_db);
     shared_ptr<PhotoObject> newPhoto(string _name, string _path, float _lat, float _longit);
