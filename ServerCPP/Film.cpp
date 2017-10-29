@@ -11,9 +11,13 @@ void Film::setNChs(int value)
     nChs = value;
 }
 
-int *Film::getChList() const
+int *Film::getChList(int *_nChs) const
 {
-    return chList;
+	*_nChs, nChs;
+	int *_chList = new int[nChs];
+	for (int i = 0; i<nChs; i++)
+    	_chList[i] = chList[i];
+	return _chList;
 }
 
 void Film::setChList(int *value, int _nChs)
