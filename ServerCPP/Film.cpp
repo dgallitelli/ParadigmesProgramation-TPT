@@ -16,15 +16,22 @@ int *Film::getChList() const
     return chList;
 }
 
-void Film::setChList(int *value)
+void Film::setChList(int *value, int _nChs)
 {
-    chList = value;
+	if (chList != nullptr){
+		delete [] chList;
+		chList = nullptr;
+	}
+	nChs = _nChs;
+	for (int i = 0; i<nChs; i++)
+    	chList[i] = value[i];
 }
 
 Film::Film(string _name, string _path, int _duration, int _nChs, int *_chList) :
     VideoObject(_name, _path, _duration), nChs(_nChs) {
         chList = new int[nChs];
-        *chList = *_chList;
+		for (int i = 0; i<nChs; i++)
+        	chList[i] = _chList[i];
 }
 
 void Film::printChInfo()
