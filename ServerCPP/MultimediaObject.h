@@ -45,6 +45,11 @@ public:
     virtual void setPath(const string &value);
 
     virtual void print(ostream& outStream);
+    /**
+     * @brief Abstract method for multimedia reproduction
+     * Method for reproducing the file. Has to be redefined in every lower level class
+     * in order to specify the correct system command to reproduce the appropriate file.
+     */
     virtual void reproduce() = 0;
 };
 
