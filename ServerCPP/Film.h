@@ -39,8 +39,8 @@ public:
     // GETTERS and SETTERS
     int getNChs() const;
     void setNChs(int value);
-    int *getChList() const;
-    void setChList(int *value);
+    int *getChList(int *_n) const;
+    void setChList(int *value, int _nChs);
 };
 
 #endif // FILM_H

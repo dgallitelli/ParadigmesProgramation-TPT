@@ -16,13 +16,13 @@ class Group : public std::list<shared_ptr<MultimediaObject>>
 {
     friend class Database;
 private:
-    string* groupName;          /**< The name of the group */
+    string groupName;          /**< The name of the group */
     Group(string _groupName);
 public:
-    string *getGroupName() const;
-    void setGroupName(string *value);
     void print();
     ~Group(){}
+    string getGroupName() const;
+    void setGroupName(const string &value);
 };
 
 #endif // GROUP_H

@@ -13,7 +13,7 @@ Group::Group(string _groupName) :list<shared_ptr<MultimediaObject>>(), groupName
  * Getter method for the group name
  * @return A string containing the group name
  */
-string *Group::getGroupName() const
+string Group::getGroupName() const
 {
     return groupName;
 }
@@ -23,7 +23,7 @@ string *Group::getGroupName() const
  * Setter method for the group name
  * @param value - A string containing the new group name
  */
-void Group::setGroupName(string *value)
+void Group::setGroupName(const string &value)
 {
     groupName = value;
 }

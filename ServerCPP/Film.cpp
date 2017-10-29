@@ -20,12 +20,12 @@ void Film::setNChs(int value)
 
 /**
  * @brief Getter method for the list of chapters duration
- * @param _nChs - pointer to the int containing the number of chapters
+ * @param _n - pointer to the int containing the number of chapters
  * @return the list of chapters duration
  */
-int *Film::getChList(int *_nChs) const
+int *Film::getChList(int *_n) const
 {
-	*_nChs, nChs;
+    *_n = nChs;
 	int *_chList = new int[nChs];
 	for (int i = 0; i<nChs; i++)
     	_chList[i] = chList[i];
@@ -43,7 +43,7 @@ void Film::setChList(int *value, int _nChs)
 		delete [] chList;
 		chList = nullptr;
 	}
-	nChs = _nChs;
+    nChs = _nChs;
 	for (int i = 0; i<nChs; i++)
     	chList[i] = value[i];
 }
