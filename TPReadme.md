@@ -53,7 +53,11 @@ Si l'objet contient des pointeurs ou, en general, variables avec mémoire dynami
 ### ETAPE 8
 #### Le groupe ne doit pas détruire les objets quand il est détruit car un objet peut appartenir à plusieurs groupes (on verra ce point à la question suivante). On rappelle aussi que la liste d'objets doit en fait être une liste de pointeurs d'objets. Pourquoi ? Comparer à Java.
 
+Utiliser une liste de pointeurs permet de detruir les variables qui pointe à une objet, mais pas l'objet lui-meme.
 
+En Java, il n'y a pas probleme de destructeur grace a le *garbage collector*: on peut faire pointer sur rien l'objet du groupe (on le met a *null*), et donc les pointeurs sont invalides mais les objets sont sauvegardés.
 
 ### ETAPE 10
 #### Les méthodes précédentes permettent d'assurer la cohérence de la base de données car quand on crée un objet on l'ajoute à la table adéquate. Par contre, ce ne sera pas le cas si on crée un objet directement avec new (il n'appartiendra à aucune table). Comment peut-on l'interdire, afin que seule la classe servant à manipuler les objets puisse en créer de nouveaux?
+
+Pour interdire ce possibilité, il faut rendre **private** le constructeur de les objets *Photo*, *Video*, *Film* et *Group*, et rendre **friend** de ces classes la classe de la base de données. Dans cette maniere, on peut créer un nouveau objet seulement via les methodes de la base de données.
