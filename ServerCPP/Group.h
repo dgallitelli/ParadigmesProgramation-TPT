@@ -5,6 +5,8 @@
 #include <memory>
 #include "MultimediaObject.h"
 
+// class Group : public std::list<MultimediaObject*>
+
 class Group : public std::list<shared_ptr<MultimediaObject>>
 {
     friend class Database;

@@ -1,9 +1,7 @@
 #include "Group.h"
 
-Group::Group(string _groupName){
-    list<MultimediaObject*>();
-    groupName = new string(_groupName);
-}
+// Group::Group(string _groupName) : std::list<MultimediaObject*>(), groupName(_groupName){}
+Group::Group(string _groupName) :list<shared_ptr<MultimediaObject>>(), groupName(_groupName){}
 
 Group::~Group(){
     delete groupName;
