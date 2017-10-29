@@ -17,7 +17,7 @@ public:
     string *getGroupName() const;
     void setGroupName(string *value);
     void print();
-    ~Group();
+    ~Group(){}
 };
 
 #endif // GROUP_H
