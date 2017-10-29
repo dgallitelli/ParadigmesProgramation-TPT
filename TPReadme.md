@@ -39,16 +39,16 @@ Il faut faire une **copie profonde** de ses données quand on appelle le *constr
 
 #### Attention, le même problème se pose si un accesseur retourne directement ce tableau sans prendre les précautions nécessaires : la encore le contenu du tableau n'est pas récopié et l'appelant peut le modifier à sa guise. Quelle est la solution très simple que propose C/C++ pour éviter ce problème ?
 
-
+Le même problème implique la même solution: on va retourner une copie du tableau, pour protéger les données de l'objet. Le method *get* retournera une copie profonde du tableau de chapitres, en acceptant comme argument un pointeur a une variable pour le numero de chapitres.
 
 ### ETAPE 7
 #### Contrairement à Java ou C#, C/C++ ne gère pas la mémoire dynamique automatiquement (\*) : comme il n'y a pas de ramasse miettes, tout ce qui a été créé avec new doit être détruit avec delete sinon on aura des fuites mémoires. Parmi les classes précédemment écrites quelles sont celles qu'il faut modifier afin qu'il n'y ait pas de fuite mémoire quand on détruit leurs instances ?
 
-
+Seulement dans la classe *Film* il faut modifier le destructeur pour eviter les fuites mémoires. Les autres classes n'ont pas des variables avec memoire dynamique, donc on modifiera rien.
 
 #### De même, la copie d'objets peut poser problème dans certains cas. Pourquoi et que faudrait-il faire ?
 
-
+Si l'objet contient des pointeurs ou, en general, variables avec mémoire dynamique, il faudrait redefinir le constructeur pour copie afin de implementer la **copie profonde** de ces variables.
 
 ### ETAPE 8
 #### Le groupe ne doit pas détruire les objets quand il est détruit car un objet peut appartenir à plusieurs groupes (on verra ce point à la question suivante). On rappelle aussi que la liste d'objets doit en fait être une liste de pointeurs d'objets. Pourquoi ? Comparer à Java.
