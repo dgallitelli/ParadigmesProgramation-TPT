@@ -7,5 +7,5 @@ ServerCPP/myserv
 ServerCPP/inf224.creator.*
 ServerCPP/client
 ServerCPP/server
-
+otherFiles/*
 ClientJava/*.class
