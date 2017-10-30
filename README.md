@@ -8,7 +8,7 @@ Les 4 grands paradigmes en programmation sont:
 
 - la programmation **imperative** (C, Ada, Pascal, Fortran)
 - la programmation **à objets et à acteurs** (C++, Java, SmallTalk)
-- la programmation **fonctionnelle** (**Lisp)
+- la programmation **fonctionnelle** (Lisp)
 - la programmation **en logique** (Prolog)
 
 La *programmation imperative* es la programmation basée sur les structures des controle **while** et *if-then**, et sur les instructions d'affectation.
@@ -22,6 +22,19 @@ Avec la *programmation logiciel* on programme des relations entre de données re
 #### Citer le théorème de Boehm et Jacopini. A quoi a-t-il servi?
 
 Le théorème de Boehm et Jacopini enonce: tous les programmes contenant des structures de saut conditionnelle peuvent etre réécrit avec des structures de controle **while** et **if-then**. Il  a servi comme base pour la programmation moderne structuré: permit aux programmeurs de raisonner uniquement sur le programme, et c'est le compilateur qui s'occupe de traduire les structures de controle.
+
+#### Comme est structuré le programme en Lisp?
+
+En Lisp le programme est codé comme des données: les programmes sont des listes gerées dynamiquement et récupérées automatiquement par un remasse miettes (*garbage collector*). La structure de liste est une structure de listes chainées qui sont construites à l'aide de doublets de listes appelées *cons*:
+- *nil* ou *()* est la liste vide
+- *(cons x y)* est le doublet dont le premier element est *x* et le deuxième est *y*
+- *(car d)* permet d'extraire la première composante d'un doublet
+- *(cdr d)* permet d'extraire la deuxième composante d'un doublet
+- *(null x)* permet de distinguer un doublet de la liste vide
+
+#### Qu'est-ce que la reflexivité? Pourquoi Lisp est un language reflexif?
+
+La reflexivité en Lisp est la proprieté pour la quelle tous les fonctions de Lisp sont ecrit en Lisp, donc redefinir sus fonctions base permet de changer la syntaxe et la semantique du language. Un example sont les fonctions *read*, *print* et *eval*. Les applications de Lisp sont: *emacs*, *SmallTalk*, l'*I.A.* .
 
 #### Qu'est-ce que l'encapsulation en programmation objet? Quels sont les buts recherchés? Concrètement, comment est-ce implémenté en C++ et y a t'il des différences avec Java?
 
