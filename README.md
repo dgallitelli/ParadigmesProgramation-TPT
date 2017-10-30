@@ -36,6 +36,28 @@ En Lisp le programme est codé comme des données: les programmes sont des liste
 
 La reflexivité en Lisp est la proprieté pour la quelle tous les fonctions de Lisp sont ecrit en Lisp, donc redefinir sus fonctions base permet de changer la syntaxe et la semantique du language. Un example sont les fonctions *read*, *print* et *eval*. Les applications de Lisp sont: *emacs*, *SmallTalk*, l'*I.A.* .
 
+#### Definir le probleme de coloriage de carte et sus phases de resolution
+
+Le probleme de coloriage de carte consiste en colorier une carte avec des couleurs de telle manière que due zones contigues aient des couleurs differentes. Il y a deux phases de resolution:
+- **Phase Generate** : le programme génère toutes les solutions envisageables, c'est-à-dire tous les coloriages possibles pour le prédicat *color(X)* qui génère N branches de demonstration pour chacune des valeurs possibles de X (zone de la carte).
+- **Phase Test** : le programme controle si la solution generée est conforme. Pour cela, il suffit de tester si les couleurs de duex zones contigues sont differentes.
+Le programme peut etre amélioré en mélangeant les deux phases pour couper les branches de la démonstration, mais la programmation devient moins logique. Ce probleme peut etre résolu en definissant des contraintes dans la phase Generate.
+
+#### Qu'est-ce qu'une variable d'instance, une variable de classe, une méthode d'instance, une méthode de classe ? Y a-t'il des différences entre Java et C++ ?
+
+- **Variable d'instance**: chaque objet de la classe possede sa propre copie de cette type de variable, et elle doit etre *private* ou *protected*. Les variables d'instance doivent etre initalisées si sont des types de base ou des pointers, sinon ont valeur aleatoire.
+- **Variable de classe**: sont des variables partagées entre les instances de la meme classe. Doivent etre initialisées. Il faut specifier le mot-clé *static* avant le type de variable.
+- **Methode d'instance**: methode qui permet l'access aux variables d'instance, c'est-à-dire les données de l'instance particulier d'une classe. Si la methode ne modifie pas les variables d'instance, il faut mettre le mot-clé *const*.
+- **Methode de classe**: methode qui permet l'access aux variables de classe. Il faut specifier le mot-clé *static* avant le type de retour.
+
+En Java la sémantique est la meme, mais il n'y a pas *const*.
+
+#### A quoi servent les destructeurs en C++ et dans quels cas sont-ils nécessaires ? Y a t'il des destructeurs en Java ?
+
+Le **destructeur** est la methode appelée avant la destruction de l'objet, c'est-à-dire avant de libèrer la memoire (pour le *delete*). Il sert a "faire le ménage", par exemple afin de fermer un fichier ou un socket, ou pour detruire d'autres objets auxiliaire créé dans le constructeur.
+
+En Java, il n'y a pas des destructeurs parce que la liberation de memoire est gerée automatiquement pour le remasse miettes (*garbage collector*). Il y a aussi une methode *finalize()*, qui a plus ou moins la meme fonction de les destructeurs, mais ne sont pas chainés et sont rarement utilisés.
+
 #### Qu'est-ce que l'encapsulation en programmation objet? Quels sont les buts recherchés? Concrètement, comment est-ce implémenté en C++ et y a t'il des différences avec Java?
 
 L'*encapsulation* est un concept fondamental de la programmation orientée à objet: c'est le principe de definir dans chaque classe des **méthodes** pour interagir avec les données, ou **variables d'instance**. Un objet est le seul qui peur accéder à ses variables, avec sus méthodes. L'encapsulation comprends deux etages:
