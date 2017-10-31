@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 #include "tcpserver.h"
 #include "MultimediaObject.h"
 #include "PhotoObject.h"
@@ -45,7 +46,7 @@ public:
     {
         cerr << "\nRequest: '" << request << "'" << endl;
 
-        bool fileFound = false;
+        bool fileFound = false, groupFound = false;
 
         // 1) pour decouper la requête:
         // on peut par exemple utiliser stringstream et getline()
@@ -57,8 +58,10 @@ public:
         for (string each; getline(split, each, split_char); tokens.push_back(each));
 
         // Drop connection if QUIT command has been received
-        if (tokens[0] == "quit")
+        if (tokens[0] == "quit"){
+            response = "Connection closed by client.";
             return false;
+        }
 
         // 2) faire le traitement:
         // - si le traitement modifie les donnees inclure: TCPLock lock(cnx, true);
@@ -72,19 +75,32 @@ public:
         else if (tokens[0] == "play" || tokens[0] == "info"){
             TCPLock lock(cnx);
 
-            myDB->printObjectFromName(tokens[1], myss);
-            if (myss.rdbuf()->in_avail() == 0){
-                // The file is not in the db
-                response = "ERR - File not found";
-            } else {
-                fileFound = true;
+            // First look for groups
+            // Then look for multimedia objects.
+
+            myDB->printGroupFromName(tokens[1], myss);
+            if (myss.rdbuf()->in_avail() != 0){
                 response = myss.str();
+                groupFound = true;
+            } else {
+                myDB->printObjectFromName(tokens[1], myss);
+                if (myss.rdbuf()->in_avail() != 0){
+                    fileFound = true;
+                    if (tokens[0] == "play" && fileFound){
+                        myDB->reproduceFromName(tokens[1]);
+                        response = "OK - File is being reproduced.";
+                    } else {
+                        response = myss.str();
+                    }
+                }
+            }
+            if (!fileFound && !groupFound){
+                // The file is not in the db
+                response = "ERR - File/Group not found";
             }
 
-            if (tokens[0] == "play" && fileFound){
-                myDB->reproduceFromName(tokens[1]);
-                response = "OK - File is being reproduced.";
-            }
+            delete lock;
+            lock = nullptr;
         }
         // Return unsupported command error
         else {
@@ -97,6 +113,8 @@ public:
         //   des objets ou des groupes en lui passant en argument un stringstream
         // - attention, la requête NE DOIT PAS contenir les caractères \n ou \r car
         //   ils servent à délimiter les messages entre le serveur et le client
+        response = response.substr(0, response.size()-1);
+        replace(response.begin(), response.end(), '\n', ';');
         cerr << "response: " << response << endl;
 
         // renvoyer false si on veut clore la connexion avec le client
@@ -157,4 +175,3 @@ int main(int argc, char* argv[])
 
     return 0;
 }
-

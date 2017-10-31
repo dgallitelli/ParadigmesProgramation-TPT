@@ -160,6 +160,7 @@ public class ClientMain extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			String name = "info " + textField.getText();
 			String s = client.send(name) + "\n";
+            s = s.replace(";","\n");
 			textArea.append(s);
 		}
 
@@ -171,6 +172,7 @@ public class ClientMain extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			String name = "play " + textField.getText();
 			String s = client.send(name) + "\n";
+            s = s.replace(";","\n");
 			textArea.append(s);
 		}
 
@@ -180,6 +182,8 @@ public class ClientMain extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+            String s = client.send("quit") + "\n";
+			textArea.append(s);
 			System.exit(0);
 		}
 

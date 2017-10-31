@@ -32,10 +32,21 @@ void Group::setGroupName(const string &value)
  * @brief Group::print
  * Method for printing information about the group
  * Iterates over the elements of the group and calls their print methods, printing on stdout.
+ * @param outStream has to point to a valid output stream, eg cout or a stringstream
  */
-void Group::print()
+void Group::print(ostream &outStream)
 {
-    std::cout << "#### PRINTING CONTENT OF GROUP " << groupName << "####" << endl;
-    for (std::list<shared_ptr<MultimediaObject>>::const_iterator i = this->begin(); i != this->end(); ++i)
-        (*i)->print(std::cout);
+
+    if (outStream.rdbuf() == cout.rdbuf()){
+        // output on stdout
+        std::cout << "#### PRINTING CONTENT OF GROUP " << groupName << "####" << endl;
+        for (std::list<shared_ptr<MultimediaObject>>::const_iterator i = this->begin(); i != this->end(); ++i)
+            (*i)->print(std::cout);
+    } else {
+        // output on a different output stream
+        outStream << "#### PRINTING CONTENT OF GROUP " << groupName << "####" << endl;
+        for (std::list<shared_ptr<MultimediaObject>>::const_iterator i = this->begin(); i != this->end(); ++i)
+            (*i)->print(outStream);
+    }
+
 }

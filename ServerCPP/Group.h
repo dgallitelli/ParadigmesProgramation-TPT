@@ -19,7 +19,7 @@ private:
     string groupName;          /**< The name of the group */
     Group(string _groupName);
 public:
-    void print();
+    void print(ostream& outStream);
     ~Group(){}
     string getGroupName() const;
     void setGroupName(const string &value);

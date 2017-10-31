@@ -52,6 +52,6 @@ void MultimediaObject::print(ostream &outStream)
         cout << "Objectname: " << name << " | Filename: "  << path << endl;
     } else {
         // output on a different output stream
-        outStream << "Objectname: " << name << " | Filename: "  << path;
+        outStream << "Objectname: " << name << " | Filename: "  << path << endl;
     }
 }

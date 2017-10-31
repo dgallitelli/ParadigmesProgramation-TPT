@@ -34,7 +34,7 @@ public:
 
     void reproduceFromName(string name);
     void printObjectFromName(string name, ostream &outStream);
-    void printGroupFromName(string name);
+    void printGroupFromName(string name, ostream &outStream);
 };
 
 #endif // DATABASE_H

@@ -119,12 +119,12 @@ void Database::printObjectFromName(string name, ostream& outStream)
  * given its name from the map
  * @param name - name of the group object in the map
  */
-void Database::printGroupFromName(string name)
+void Database::printGroupFromName(string name, ostream& outStream)
 {
     auto it=groupMap.find(name);
     if (it == groupMap.end()){
         cout << "No multimedia object found with that name." << endl;
     } else {
-        (it->second)->print();
+        (it->second)->print(outStream);
     }
 }
