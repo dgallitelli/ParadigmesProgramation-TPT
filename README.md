@@ -1,192 +1,89 @@
-# INF224 Paradigmes de Programmation - TELECOM ParisTech A.Y. 2017/18
+GALLITELLI Davide - INF224 A.Y. 2017/18
 
-This document has been used to reply to previous years exams for the INF224 course.
+# INF224 TP 2017/18
 
-## Donner et definir les 4 grands paradigmes en programmation.
-
-Les 4 grands paradigmes en programmation sont:
-
-- la programmation **imperative** (C, Ada, Pascal, Fortran)
-- la programmation **à objets et à acteurs** (C++, Java, SmallTalk)
-- la programmation **fonctionnelle** (Lisp)
-- la programmation **en logique** (Prolog)
-
-La _programmation imperative_ es la programmation basée sur les structures des controle **while** et _if-then*_, et sur les instructions d'affectation.
-
-La _programmation à objets_ est la programmation basée sur des structures des données particuliers appellées **classes**, où il y a des fonctions pour gerer les données appellées **methodes**.
-
-La _programmation fonctionnelle_ est la programmation pour la quelle les programmes sont une **liste de transformation numerique**, où les fonctions ont un argument et un resultat. Ce concept libere le programmeur de la gestion de la memoire.
-
-Avec la _programmation logiciel_ on programme des relations entre de données representées par des **atomes**, symbols et nombres, et des **termes fonctionels**. On permet aussi d'utiliser une catégorie restreinte de formule logiques pour programmer, c'est-à-dire le _clause d'Horn_.
-
-## Citer le théorème de Boehm et Jacopini. A quoi a-t-il servi?
-
-Le théorème de Boehm et Jacopini enonce: tous les programmes contenant des structures de saut conditionnelle peuvent etre réécrit avec des structures de controle **while** et **if-then**. Il a servi comme base pour la programmation moderne structuré: permit aux programmeurs de raisonner uniquement sur le programme, et c'est le compilateur qui s'occupe de traduire les structures de controle.
-
-## Comme est structuré le programme en Lisp?
-
-En Lisp le programme est codé comme des données: les programmes sont des listes gerées dynamiquement et récupérées automatiquement par un remasse miettes (_garbage collector_). La structure de liste est une structure de listes chainées qui sont construites à l'aide de doublets de listes appelées _cons_:
-
-- _nil_ ou _()_ est la liste vide
-- _(cons x y)_ est le doublet dont le premier element est _x_ et le deuxième est _y_
-- _(car d)_ permet d'extraire la première composante d'un doublet
-- _(cdr d)_ permet d'extraire la deuxième composante d'un doublet
-- _(null x)_ permet de distinguer un doublet de la liste vide
-
-## Qu'est-ce que la reflexivité? Pourquoi Lisp est un language reflexif?
-
-La reflexivité en Lisp est la proprieté pour la quelle tous les fonctions de Lisp sont ecrit en Lisp, donc redefinir sus fonctions base permet de changer la syntaxe et la semantique du language. Un example sont les fonctions _read_, _print_ et _eval_. Les applications de Lisp sont: _emacs_, _SmallTalk_, l'_I.A._ .
-
-## Definir le probleme de coloriage de carte et sus phases de resolution
-
-Le probleme de coloriage de carte consiste en colorier une carte avec des couleurs de telle manière que due zones contigues aient des couleurs differentes. Il y a deux phases de resolution:
-
-- **Phase Generate** : le programme génère toutes les solutions envisageables, c'est-à-dire tous les coloriages possibles pour le prédicat _color(X)_ qui génère N branches de demonstration pour chacune des valeurs possibles de X (zone de la carte).
-- **Phase Test** : le programme controle si la solution generée est conforme. Pour cela, il suffit de tester si les couleurs de duex zones contigues sont differentes. Le programme peut etre amélioré en mélangeant les deux phases pour couper les branches de la démonstration, mais la programmation devient moins logique. Ce probleme peut etre résolu en definissant des contraintes dans la phase Generate.
-
-## Qu'est-ce qu'une variable d'instance, une variable de classe, une méthode d'instance, une méthode de classe ? Y a-t'il des différences entre Java et C++ ?
-
-- **Variable d'instance**: chaque objet de la classe possede sa propre copie de cette type de variable, et elle doit etre _private_ ou _protected_. Les variables d'instance doivent etre initalisées si sont des types de base ou des pointers, sinon ont valeur aleatoire.
-- **Variable de classe**: sont des variables partagées entre les instances de la meme classe. Doivent etre initialisées. Il faut specifier le mot-clé _static_ avant le type de variable.
-- **Methode d'instance**: methode qui permet l'access aux variables d'instance, c'est-à-dire les données de l'instance particulier d'une classe. Si la methode ne modifie pas les variables d'instance, il faut mettre le mot-clé _const_.
-- **Methode de classe**: methode qui permet l'access aux variables de classe. Il faut specifier le mot-clé _static_ avant le type de retour.
-
-En Java la sémantique est la meme, mais il n'y a pas _const_.
-
-## A quoi servent les destructeurs en C++ et dans quels cas sont-ils nécessaires ? Y a t'il des destructeurs en Java ?
-
-Le **destructeur** est la methode appelée avant la destruction de l'objet, c'est-à-dire avant de libèrer la memoire (pour le _delete_). Il sert a "faire le ménage", par exemple afin de fermer un fichier ou un socket, ou pour detruire d'autres objets auxiliaire créé dans le constructeur.
-
-En Java, il n'y a pas des destructeurs parce que la liberation de memoire est gerée automatiquement pour le remasse miettes (_garbage collector_). Il y a aussi une methode _finalize()_, qui a plus ou moins la meme fonction de les destructeurs, mais ne sont pas chainés et sont rarement utilisés.
-
-## Qu'est-ce que l'encapsulation en programmation objet? Quels sont les buts recherchés? Concrètement, comment est-ce implémenté en C++ et y a t'il des différences avec Java?
-
-L'_encapsulation_ est un concept fondamental de la programmation orientée à objet: c'est le principe de definir dans chaque classe des **méthodes** pour interagir avec les données, ou **variables d'instance**. Un objet est le seul qui peur accéder à ses variables, avec sus méthodes. L'encapsulation comprends deux etages:
-
-- _specifier_ une interface avec l'exterieur (API), avec la quelle interagir avec les données;
-- _implementer_ les methodes d'accès, qui protegent l'integrité du objet et la validité des données
-
-L'encapsulation permit aussi beaucoup de modularisation, c'est-à-dire la possibilité de changer l'implementation d'un objet sans modifier les autres.
-
-L'encapsulation en C++ est implementée avec les mots-clés **private** (default, accès uniquement pour la classe), **protected** (accès pour les sous-classes), et **public** (accès pour tout le monde). En plus, en C++ il est possible specifier les droits d'accès pour certaines classes ou fonctions avec le mot clé **friend**: la classe ou les methodes qui ont avant le mot clè _friend_ peuvent acceder a les variables et les methodes d'instance de la classe ou le _friend_ a été specifié.
-
-En **Java** l'encapsulation est implementée de maniere tres similaire. Il n'y a pas le mot clé _friend_, mais il y a les **package**: tous les classes dans le meme package sont _friend_.
-
-## Qu'est-ce que la programmation générique et quels sont ses avantages? Y a-t'il des différences entre C++ et Java? Citez des exemples typiques de cas où c'est utile.
-
-La _programmation générique_ est une programmation basée sur l'utilise de structures permitant de parametriser les types. On parle de **template**: la meme fonction peut etre instancièe à la complation de faison differente en fonction du type utilisé comme parametre. La programmation générique est utile avec des algorithmes avec le meme definition pour types differentes: pour example, la fonction **max** o **min**, qui marche a meme maniere independamment du type.
-
-En **Java**, c'est sufficient importer le package **generics**, et definir la classe générique avec le type parametrisé. Toutefois, c'est pas possible utiliser les types de base, ou faire traitements sur les types (_dynamic_cast_ de C++).
-
-## On souhaite écrire une fonction swap() qui échange la valeur de deux entiers qui lui sont passés en argument. Ecrire cette fonction en C++ et en Java. Quelles sont les différences? Pourquoi?
-
-```c++
-void swap(int &a, int &b){
-    int temp;
-    temp = a;
-    a = b;
-    b = temp;
-}
-
-// à l'appel:
-swap(x,y);
-```
-
-```java
-int swap(int a, int b){
-    return a;
-}
-// à l'appel
-y = swap(x, x=y)
-```
-
-## Quelles sont les techniques de programmation typiquement utilisées pour ajouter des listeners aux composants graphiques Java Swing? Expliquez en vous aidant événtuellement de schémas.
-
-1. Classe avec implements Listener associé a une classe extends JFrame , le listener doit avoir une reference vers la partie graphique - solution flexible mais lourde
-
-  <insert here="" pic="" of="" version1="">
-  </insert>
-
-2. Objets hybrides: classe extends JFrame & implements Listener - solution plus simple mais limité, une seule methode actionPerformed() doit specifier beaucoup de butons
-
-  <insert here="" pic="" of="" version2="">
-  </insert>
-
-3. Classes imbriquées - combine les avantages des 2 solutions precedentes
-
-  <insert here="" pic="" of="" version3="">
-  </insert>
-
-## Quels sont les cas d'utilisation du mot-clé _const_ en C++? En prenant un exemple, (par exemple le TP) expliquez pourquoi il est important de préciser ce qui est constant. Quelles sont les alternatives, par exemple en Java?
-
-Le mot-clé _const_ est utilisé pour returner des valeurs qui ne doivent pas etre modifiés - sont ideal pour le **passage par valeur** (copie). Il specifie ce que la fonction a le droit de faire, pour eviter les erreurs. Dans le TP, on a utilisé le mot-clé _const_ avec le getteurs, parce que les valeurs returnés ne doivent pas etre modifiés (pour respecter l'encapsulation). Les objet _const_ permit de partager sans risque les données, sans les dupliquer.
-
-En **Java**, il n'y a pas _const_:
-
-- il y a _final_, equivalent de _const_
-- on utilise les **types immuables** (String pour example) majoritairement, mais on peut utiliser des types muables (StringBuffer) selon besoins.
-
-## Qu'est-ce qui caractérise les fonctions lambda? Pourquoi permettent elles de simplifier le code?
-
-Sont des fonctions anonymes qui capturent les variables specifiées, et peuvent etre definits comme arguments des autres fonctions, donc elles permettent de simplifier beaucoup le code. On peut specifier:
-
-- [] - capture rien
-- [=] - capture tous les variables par copie
-- [&] - capture tous les variables par reference
-- [var] - capture la variable var par copie
-- [&var] - capture la variable var par reference
-- [this] - si la lambda est dans un method, capture l'instance du objet appellant
-
-## Q10 from Exam Nov17
+Il faut utiliser dans chaque répertoire pour produire les exécutables:
 
 ```
-class Adresse{
-private:
-    string nom;
-    string prenom;
-    string numero;
-    string adresse;
-public:
-    Adresse();
-    Adresse(string nom, string prenom, string numero, string addresse) :
-            nom(nom), prenom(prenom), numero(numero), addresse(addresse) {}
-    string getNom() const {return nom;}
-    string getPrenom() const {return prenom;}
-    string getNumero() const {return numero;}
-    string getAdresse() const {return adresse;}
-    void setNom(const string& _nom){nom=_nom;}
-    void setNom(const string& _prenom){prenom=_prenom;}
-    void setNom(const string& _numero){numero=_numero;}
-    void setNom(const string& _addresse){addresse=_addresse;}
-}
+make run
 ```
 
+Pour le sous-répertoire *cpp*, le fichier principal est *server.cpp*, qui contient le *main* du serveur. Les objets définit dans le main sont:
+
+- "test" pour le fichier "test.png"
+- "video1" pour le fichier "video1.avi"
+- "film1" pour le fichier "movie1.avi"
+- "gdbName" pour le groupe de fichiers
+
+Comme les fichiers utilisée pour les vidéos sont lourds, ils n'ont pas été inclus dans le répertoire.
+
+Pour le sous-répertoire *swing*, le fichier principal est *ClientMain*, qui contient le *main* du client. Dans le client, c'est suffisant spécifier le nom du fichier comme a été specifiée dans le main.
+
+Ci-après, on va trouver les réponses aux questions trouvé dans les différentes étapes du projet.
+
+### ÉTAPE 4
+#### Comme pour la fonction d'affichage, la fonction pour jouer l'objet ne modifie pas l'objet et elle doit être déclarée dans les classes Photo et Video et dans la classe de base afin de permettre un appel polymorphique sur la hiérarchie de classes. Cependant, contrairement à la fonction d'affichage, elle ne peut pas avoir d'implementation au niveau de la classe de base (car a priori chaque type d'objet nécessite un utilitaire différent pour être joué). Comment appelle-t'on ce type de méthode et comment faut-il les déclarer ?
+
+Ce type de méthode s'appelle **méthode abstrait**, et il faut le déclarer avec le mot-clè *virtual*. Dans l'header de la classe *MultimediaObject*, on va avoir:
+
 ```
-class Carnet{
-private:
-    list<Adresse> carnet;
-public:
-    Carnet(){}
-    Carnet(list<Adresse> _carnet){
-        if !_carnet.empty()
-            for (auto it:_carnet)
-                carnet.push_back(*it);
-    }
-    void ajoutAdresse(Adresse *newAddr){
-        carnet.push_back(*newAddr);
-    }
-    Adresse rechAdresse(string nom){
-        for (auto it:carnet){
-            if (it->getNom()==nom)
-                return it;
-        }
-        return nullptr;
-    }
-    void supAdresse(string nom){
-        for (auto it:carnet){
-            if (it->getNom()==nom)
-                it->erase();
-        }
-    }
-}
+virtual void reproduce() const = 0;
 ```
+
+#### Si vous avez fait correctement ce qui précède, il ne sera plus possible d'instancer des objets de la classe de base. Pourquoi ?
+
+Parce que une classe avec des méthodes abstraits est un **classe abstrait**: il n'est pas possible d’instancier objets de ce classe, mais seulement des objets qui sont herités de la classe base.
+
+### ÉTAPE 5
+#### On veut maintenant pouvoir traiter génériquement une liste comprenant à la fois des photos et des vidéos. Pour ce faire créer dans main.cpp un tableau dont les éléments sont tantôt une photo tantôt une vidéo. Ecrire ensuite une boucle permettant d'afficher les attributs de tous les élements du tableau (ou de les "jouer"). Cette boucle n'a pas besoin de connaître le type des élements : elle doit pouvoir traiter de la même manière tous les objets dérivant de la classe de base. Quelle est la propriété caractéristique de l'orienté objet qui permet de faire cela ? Qu'est-il spécifiquement nécessaire de faire dans le cas du C++ ? Quel est le type des éléments du tableau : est-ce que ce tableau contient les objets ou des pointeurs vers ces objets ? Pourquoi ? Comparer à Java.
+
+La propriété caractéristique de l'orienté à objet qui permet ce truc c'est le polymorphisme: le polymorphisme permet de choisir le plus de vue le plus approprié selon les besoins, c'est-à-dire qu'il permet de appeler le méthode pour chaque classe mais de le traiter de manière uniforme. Pour exploiter ce puissance de C++, il faut avoir dans la superclasse une *methode abstraite*, qui a été redéfinit dans tous les classes fils. En plus, il faut définir un tableau de double pointeurs a la superclasse, et appeler la méthode pour chaque élément du tableau. Le double pointeurs sont nécessaires parce que chaque élément doit pointer à une instance de une classe fil. Dans notre cas, nous avons:
+
+```
+MultimediaObject* moArray[] = {
+	new PhotoObject("obj1", "path1", 0, 0),
+	new PhotoObject("obj2", "path2", 0, 0),
+	new VideoObject("video1", "pathV1", 10),
+	new VideoObject("video2", "pathV2", 25)
+};
+
+for (int i = 0; i < valueNum; i++)
+	moArray[i]->reproduce();
+```
+
+En Java, c'est pareil: de défault, Java implémente une liaison tardive, c'est-à-dire qui la méthode appellée c'est toujours la du *pointé*. Donc, l’implémentation de la solution serait très similaire a la de C++, avec un tableau de références aux objets de a superclasse qui appellent le méthode abstrait de la superclasse (définit en Java avec le mot-clé **abstract**).
+
+### ÉTAPE 6
+#### Que faut-il faire pour que l'objet Film ait plein contrôle sur ses données et que son tableau de durées des chapitres ne puisse pas être modifié (ou pire, détruit) à son insu ? (c'est l'objet qui doit pouvoir modifier ce qui lui appartient, pas les autres !)
+
+Il faut faire une **copie profonde** de ses données quand on appelle le *constructeur* ou la méthode *set* sur le tableau de chapitres. De cette façon, l'objet *Film* aura sa copie des données, qui peut être modifie uniquement par lui.
+
+#### Attention, le même problème se pose si un accesseur retourne directement ce tableau sans prendre les précautions nécessaires : la encore le contenu du tableau n'est pas récopié et l'appelant peut le modifier à sa guise. Quelle est la solution très simple que propose C/C++ pour éviter ce problème ?
+
+Le même problème implique la même solution: on va retourner une copie du tableau, pour protéger les données de l'objet. Le méthode *get* retournera une copie profonde du tableau de chapitres, en acceptant comme argument un pointeur a une variable pour le numéro de chapitres.
+
+### ÉTAPE 7
+#### Contrairement à Java ou C#, C/C++ ne gère pas la mémoire dynamique automatiquement (\*) : comme il n'y a pas de ramasse miettes, tout ce qui a été créé avec *new* doit être détruit avec *delete* sinon on aura des fuites mémoires. Parmi les classes précédemment écrites quelles sont celles qu'il faut modifier afin qu'il n'y ait pas de fuite mémoire quand on détruit leurs instances ?
+
+Seulement dans la classe *Film* il faut modifier le destructeur pour éviter les fuites mémoires. Les autres classes n'ont pas des variables avec mémoire dynamique, donc on modifiera rien.
+
+#### De même, la copie d'objets peut poser problème dans certains cas. Pourquoi et que faudrait-il faire ?
+
+Si l'objet contient des pointeurs ou, en général, variables avec mémoire dynamique, il faudrait redefinir le constructeur pour copie afin de implementer la **copie profonde** de ces variables.
+
+### ÉTAPE 8
+#### Le groupe ne doit pas détruire les objets quand il est détruit car un objet peut appartenir à plusieurs groupes (on verra ce point à la question suivante). On rappelle aussi que la liste d'objets doit en fait être une liste de pointeurs d'objets. Pourquoi ? Comparer à Java.
+
+Utiliser une liste de pointeurs permet de détruire les variables qui pointe à une objet, mais pas l'objet lui-même.
+
+En Java, il n'y a pas problème de destructeur grâce a le *garbage collector*: on peut faire pointer sur rien l'objet du groupe (on le met a *null*), et donc les pointeurs sont invalides mais les objets sont sauvegardés.
+
+### ÉTAPE 10
+#### Les méthodes précédentes permettent d'assurer la cohérence de la base de données car quand on crée un objet on l'ajoute à la table adéquate. Par contre, ce ne sera pas le cas si on crée un objet directement avec new (il n'appartiendra à aucune table). Comment peut-on l'interdire, afin que seule la classe servant à manipuler les objets puisse en créer de nouveaux?
+
+Pour interdire ce possibilité, il faut rendre **private** le constructeur de les objets *Photo*, *Video*, *Film* et *Group*, et rendre **friend** de ces classes la classe de la base de données. Dans cette maniere, on peut créer un nouveau objet seulement via les méthodes de la base de données.
+
+### ÉTAPE 11
+#### Votre méthode *processRequest()* devra pouvoir accéder aux données de la classe créée à la question précédente. Sachant que cette méthode peut appartenir à n'importe quelle classe, quelle est la solution la plus simple ?
+
+La solution la plus simple est de avoir une référence dans la classe *MyBase* a la base de données pour permettre de le envoyer et renvoyer les informations nécessaires. Le constructeur de *MyBase* initialise ce référence avec le constructeur pour copie de l'objet de la base de données.
